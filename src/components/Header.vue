@@ -1,8 +1,8 @@
 <template>
   <header>
     <h2>Boolflix</h2>
-    <input type="text" v-model="query">
-    <button @click="search">Search</button>
+    <input v-model="inputText" type="text" placeholder="Cerca il tuo film" @keyup.enter="$emit('performSearch', inputText)">
+    <button @click="$emit('performSearch', inputText)">Search</button>
   </header>
    
 </template>
@@ -10,8 +10,10 @@
 <script>
 export default {
   name: 'Header',
-  props: {
-    
+  data() {
+    return {
+      inputText: ''
+    }
   }
 }
 </script>
@@ -21,7 +23,7 @@ export default {
 * {
   box-sizing: border-box;
   margin: 0;
-    padding: 0;
+  padding: 0;
 }
 
 h2 {
